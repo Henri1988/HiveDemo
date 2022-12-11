@@ -1,5 +1,6 @@
 package com.example.hivedemo;
 
+import lombok.Value;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,12 +16,15 @@ public class HiveDemoApplication {
         SpringApplication.run(HiveDemoApplication.class, args);
     }
 
-    @Bean
-    MqttPahoClientFactory clientFactory (){
-        var factory = new DefaultMqttPahoClientFactory();
-        var options = new MqttConnectOptions();
 
-        options.setServerURIs();
+    //Connecting to hive broker
+    @Bean
+    public MqttPahoClientFactory mqttClientFactory(@Value ("${hivemq.uri}") String host ) {
+        DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
+        MqttConnectOptions options = new MqttConnectOptions();
+        options.setServerURIs(new String[] {host});
+        factory.setConnectionOptions(options);
+        return factory;
     }
 
 }

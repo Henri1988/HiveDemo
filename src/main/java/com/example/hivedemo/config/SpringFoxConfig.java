@@ -1,4 +1,4 @@
-package com.example.hivedemo.configs;
+package com.example.hivedemo.config;
 
 
 import org.springframework.context.annotation.Bean;
