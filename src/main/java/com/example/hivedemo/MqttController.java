@@ -1,14 +1,11 @@
 package com.example.hivedemo;
-
-
-import com.example.hivedemo.exceptions.ExceptionMessages;
-import com.example.hivedemo.exceptions.MqttException;
+import com.example.hivedemo.exception.ExceptionMessages;
+import com.example.hivedemo.exception.MqttException;
 import com.example.hivedemo.model.MqttPublishModel;
 import com.example.hivedemo.model.MqttSubscribeModel;
 import com.hivemq.client.internal.mqtt.message.MqttMessage;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +29,7 @@ public class MqttController {
         MqttConnection.getInstance().publish(messagePublishModel.getTopic(), mqttMessage);
     }
 
-    @GetMapping("subscribe")
+    @GetMapping("/subscribe")
     public List<MqttSubscribeModel> subscribeChannel(@RequestParam(value = "topic") String topic,
                                                      @RequestParam(value = "wait_millis") Integer waitMillis)
             throws InterruptedException, org.eclipse.paho.client.mqttv3.MqttException {

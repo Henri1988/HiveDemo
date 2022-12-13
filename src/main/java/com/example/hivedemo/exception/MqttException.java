@@ -1,4 +1,4 @@
-package com.example.hivedemo.exceptions;
+package com.example.hivedemo.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
